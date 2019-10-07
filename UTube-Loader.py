@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
 Es wird youtube-dl
-benötigt um dieses Fontend nutzen zu können!
+benötigt um dieses Tkinter Fontend nutzen zu können!
 Es lädt die Datei in den pwd/chdir in welchem das Skript gestartet wurde.
 '''
 import os
