@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
-'''
-Es wird youtube-dl
-benötigt um dieses Tkinter Fontend nutzen zu können!
-Es lädt die Datei in den pwd/chdir in welchem das Skript gestartet wurde.
-'''
 import os
+'''
+import * only allowed at module level
+Ain't important yet
+'''
 try:
-    # für Python2
+    # for Python2
     #!/usr/bin/env python
+    os.system('pip install youtube_dl')
     from tkinter import *
 except ImportError:
-    # für Python3
+    # for Python3
     #!/usr/bin/env python3
+    os.system('pip3 install youtube_dl')
     from Tkinter import *
 
 fenster = Tk()
@@ -20,22 +21,20 @@ fenster.geometry('200x90')
 fenster.configure(background='#FF0000')
 
 eingabe = Entry(fenster)
+
+
+def asVideo():
+    os.system(f"youtube-dl {eingabe.get()}")
+btn1 = Button(text="Download Mp4",command=asVideo)
+
+def asAudio():
+    os.system(f"youtube-dl -x --audio-format mp3 --audio-quality 0 {eingabe.get()}")
+btn2 = Button(fenster, text="Download Mp3",command=asAudio)
+
+# Add Elements to View
 eingabe.pack()
+btn1.pack()
+btn2.pack()
 
-
-
-def alsVideo():
-    os.system("youtube-dl " +eingabe.get())
-knopf1 = Button(text="Download Mp4",command=alsVideo)
-knopf1.pack()
-
-
-def alsAudio():
-    os.system("youtube-dl -x --audio-format mp3 --audio-quality 0 " +eingabe.get())
-knopf2 = Button(fenster, text="Download Mp3",command=alsAudio)
-knopf2.pack()
-
-
-
-
-mainloop()
+if __name__ == "__main__":
+    mainloop()
