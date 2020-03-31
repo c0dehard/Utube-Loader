@@ -1,40 +1,27 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 import os
-'''
-import * only allowed at module level
-Ain't important yet
-'''
+
 try:
-    # for Python2
-    #!/usr/bin/env python
-    os.system('pip install youtube_dl')
-    from tkinter import *
-except ImportError:
-    # for Python3
-    #!/usr/bin/env python3
-    os.system('pip3 install youtube_dl')
-    from Tkinter import *
+	os.system('pip install youtube_dl')
+	from tkinter import * # Python 2
+except ImportError : from Tkinter import * # Python 3
 
-fenster = Tk()
-fenster.title('UTube-Loader')
-fenster.geometry('200x90')
-fenster.configure(background='#FF0000')
+window = Tk() ; window.title('UTube-Loader')
+window.geometry('200x90') ; window.configure(background='#FF0000')
 
-eingabe = Entry(fenster)
+def as_video() : os.system(f"youtube-dl {usr_input.get()}")
+def as_audio() : os.system(f"youtube-dl -x --audio-format mp3 --audio-quality 0 {usr_input.get()}")
 
-
-def asVideo():
-    os.system(f"youtube-dl {eingabe.get()}")
-btn1 = Button(text="Download Mp4",command=asVideo)
-
-def asAudio():
-    os.system(f"youtube-dl -x --audio-format mp3 --audio-quality 0 {eingabe.get()}")
-btn2 = Button(fenster, text="Download Mp3",command=asAudio)
+# Create Elements
+usr_input = Entry(window)
+btn1 = Button(text="Download Mp4",command=as_video)
+btn2 = Button(window, text="Download Mp3",command=as_audio)
 
 # Add Elements to View
-eingabe.pack()
-btn1.pack()
-btn2.pack()
+for item in [usr_input, btn1, btn2]:
+	item.pack()
 
 if __name__ == "__main__":
-    mainloop()
+	mainloop()
